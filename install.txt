@@ -1,0 +1,71 @@
+CREATE TABLE `groups` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`group_name` TEXT NOT NULL,
+	`permissions` TEXT NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=4
+;
+CREATE TABLE `users` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(50) NOT NULL,
+	`password` LONGTEXT NOT NULL,
+	`salt` LONGTEXT NOT NULL,
+	`name` VARCHAR(50) NOT NULL,
+	`email` TEXT NOT NULL,
+	`group` INT(11) NOT NULL,
+	`joined` DATETIME NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=2
+;
+CREATE TABLE `user_session` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) NOT NULL,
+	`hash` LONGTEXT NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+CREATE TABLE `notification` (
+	`id` BIGINT(255) NOT NULL AUTO_INCREMENT,
+	`user` INT(255) NOT NULL,
+	`message` MEDIUMTEXT NULL,
+	`read` INT(11) NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+CREATE TABLE `grade` (
+	`id` INT(255) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(255) NOT NULL,
+	`assignment_name` TEXT NOT NULL,
+	`class` INT(11) NOT NULL,
+	`grade` INT(255) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+CREATE TABLE `settings` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`name` TEXT NOT NULL,
+	`value` TEXT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=6
+;
+INSERT INTO `grade`.`settings` (`name`, `value`) VALUES ('title', 'Php-Grade');
+INSERT INTO `grade`.`settings` (`name`, `value`) VALUES ('bootstrap-theme', 'cosmo');
+INSERT INTO `grade`.`settings` (`name`, `value`) VALUES ('debug', 'Off');
+INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('Admin', '{"Admin":1, "Teacher":0, "Student":0}');
+INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('Teacher', '{"Admin":0, "Teacher":1, "Student":0}');
+INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('student', '{"Admin":0, "Teacher":0, "Student":1}');

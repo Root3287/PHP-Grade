@@ -30,7 +30,7 @@ class User{
 	}
 	public function create($fields = array()){
 		// First user = admin!!!
-		if(!$this->_db->query('SELECT * FROM `users` WHERE 1=1')->count()){$fields['group'] = "3";}
+		if(!$this->_db->query('SELECT * FROM `users` WHERE 1=1')->count()){$fields['group'] = "4";}
 		if(!$this->_db->insert('users', $fields)){	
 			throw new Exception('There was an error adding the user! Contact an administrator!');
 		}

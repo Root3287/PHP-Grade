@@ -2,25 +2,17 @@
 define('path', '../../../');
 require path.'inc/init.php';
 $user= new User();
-$forums = new Forums();
 if(!$user->isLoggedIn() && !$user->hasPermission('Admin')){
 	session::flash('error', 'You do not have access the admin page!');
 	Redirect::to('../');
 }
-if(file_exists(path.'install/index.php')){
-	rename(path.'install/index.php', path.'install/index-disable.php');
-}
+//if(file_exists(path.'install/index.php')){
+//	rename(path.'install/index.php', path.'install/index-disable.php');
+//}
 ?>
 <html>
 	<head>
 		<?php require path.'assets/head.php';?>
-		<?php if(Input::get('page') == 'cat'):?>
-		<style type="text/css">
-		a.white{
-			color: white;
-		}
-		</style>
-		<?php endif;?>
 	</head>
 	<body>
 		<?php require path.'assets/nav.php';?>
@@ -35,7 +27,6 @@ if(file_exists(path.'install/index.php')){
 		<div class="well">
 			<a href="?page">AdminCP Home</a><br/>
 			<a href="?page=settings">Setting</a><br/>
-			<a href="?page=cat">Manage Forums Group</a><br/>
 			<a href="?page=notification">Send Mass Notification</a><br/>
 			<a href="?page=groups">Manage Groups</a><br/>
 			<a href="?page=user">Manage Users</a><br/>

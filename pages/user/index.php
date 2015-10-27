@@ -21,7 +21,6 @@ if($_GET == null){}
 			<div class="col-md-3">
 				<div class="well">
 					<a href="?page=">UserCP Home</a><br/>
-					<a href="?page=profile">Profile</a><br>
 					<a href="?page=change_password">Change password</a><br/>
 					<a href="?page=update">Update Infomation</a><br/>
 					<a href="?page=notification">Notifications<?php $not_cont = Notifaction::getUnreadCount($user->data()->id); if($not_cont > 0):?> <span class="badge"><?php echo $not_cont?></span><?php endif;?></a><br/>
@@ -41,18 +40,9 @@ if($_GET == null){}
 					case "notification":
 						include 'notification.php';
 						break;
-					case "profile":
-						include 'profile.php';
-						break;
 				}?>
 			</div>
 		</div>
 		<?php include path.'assets/foot.php'?>
-		<?php if(Input::get('page') == "profile"):?>
-		<script type="text/javascript" src="../../assets/js/ckeditor/ckeditor.js"></script>
-		<script type="text/javascript">
-		CKEDITOR.replace('sign');
-		</script>
-		<?php endif;?>
 	</body>
 </html>

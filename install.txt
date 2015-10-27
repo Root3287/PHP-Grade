@@ -6,7 +6,6 @@ CREATE TABLE `groups` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=4
 ;
 CREATE TABLE `users` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -21,7 +20,6 @@ CREATE TABLE `users` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=2
 ;
 CREATE TABLE `user_session` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -61,11 +59,11 @@ CREATE TABLE `settings` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=6
 ;
 INSERT INTO `grade`.`settings` (`name`, `value`) VALUES ('title', 'Php-Grade');
 INSERT INTO `grade`.`settings` (`name`, `value`) VALUES ('bootstrap-theme', 'cosmo');
 INSERT INTO `grade`.`settings` (`name`, `value`) VALUES ('debug', 'Off');
-INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('Admin', '{"Admin":1, "Teacher":0, "Student":0}');
+INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('Guest', '{"Admin":0, "Teacher":0, "Student":0}');
+INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('Student', '{"Admin":0, "Teacher":0, "Student":1}');
 INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('Teacher', '{"Admin":0, "Teacher":1, "Student":0}');
-INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('student', '{"Admin":0, "Teacher":0, "Student":1}');
+INSERT INTO `grade`.`groups` (`group_name`, `permissions`) VALUES ('Admin', '{"Admin":1, "Teacher":0, "Student":0}');
